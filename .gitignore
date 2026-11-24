@@ -1,0 +1,45 @@
+# Python & Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment Variables, Secrets & Credentials
+.env
+.env.*
+*.pem
+*.key
+*token*
+*secret*
+*credential*
+credentials.json
+
+# Vercel & Node
+.vercel/
+node_modules/
+
+# Local Browser Profiles & Temporary Artifacts
+temp_chrome_profile/
+*.log
+.DS_Store
+
+# Official Competition Raw Datasets, Hidden Labels & Archives
+data/raw/
+**/data/raw/
+*.zip
+*.tar
+*.gz
+
+# Submission CSV Files & Predictions
+*.csv
+outputs/
+FINAL_DELIVERY/outputs/

@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "procurement-desk"
+version = "0.1.0"
+description = "AI-Powered Supplier Negotiation Decision Engine for Kaggle"
+authors = [{ name = "Senior AI Engineer" }]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pydantic>=2.0.0",
+    "pytest>=8.0.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Procurement Desk — Agentic AI Decision Engine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #111827;
+      --card-border: #1f2937;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --accept-bg: rgba(16, 185, 129, 0.15);
+      --accept-border: #10b981;
+      --counter-bg: rgba(59, 130, 246, 0.15);
+      --counter-border: #3b82f6;
+      --reject-bg: rgba(239, 68, 68, 0.15);
+      --reject-border: #ef4444;
+      --escalate-bg: rgba(245, 158, 11, 0.15);
+      --escalate-border: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      padding: 24px;
+      line-height: 1.5;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .header h1 { font-size: 24px; font-weight: 700; color: #fff; }
+    .header .subtitle { font-size: 14px; color: var(--text-muted); }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #1e293b;
+      color: #93c5fd;
+      border: 1px solid #3b82f6;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 1024px) {
+      .container { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    input, select, textarea {
+      width: 100%;
+      background: #0d1322;
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s;
+    }
+    textarea {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      resize: vertical;
+      min-height: 140px;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 13px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn:hover:not(:disabled) {
+      background: var(--accent-hover);
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+    }
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      background: #374151;
+    }
+    .test-case-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .test-pill {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 10px 12px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+    }
+    .test-pill:hover, .test-pill.active {
+      border-color: var(--accent);
+      background: #1e3a8a;
+    }
+    .test-pill .p-title { font-size: 13px; font-weight: 600; color: #fff; }
+    .test-pill .p-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    
+    /* Result Section */
+    .decision-banner {
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border: 2px solid;
+      transition: all 0.3s ease;
+    }
+    .decision-banner.loading {
+      opacity: 0.6;
+      transform: scale(0.99);
+    }
+    .decision-banner.ACCEPT { background: var(--accept-bg); border-color: var(--accept-border); }
+    .decision-banner.COUNTER { background: var(--counter-bg); border-color: var(--counter-border); }
+    .decision-banner.REJECT { background: var(--reject-bg); border-color: var(--reject-border); }
+    .decision-banner.ESCALATE { background: var(--escalate-bg); border-color: var(--escalate-border); }
+    
+    .label-display {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .agent-card {
+      background: #0d1322;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 16px;
+      transition: border-color 0.2s;
+    }
+    .agent-card.highlight {
+      border-color: var(--accent);
+    }
+    .agent-card .a-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #93c5fd;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #1f2937;
+    }
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+    .metric .m-label { color: var(--text-muted); }
+    .metric .m-val { font-weight: 600; color: #fff; font-family: 'JetBrains Mono', monospace; }
+    .formula-box {
+      background: #111827;
+      border: 1px dashed #374151;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #a5f3fc;
+      margin-top: 8px;
+      word-break: break-all;
+    }
+    .status-toast {
+      font-size: 12px;
+      color: #10b981;
+      margin-top: 8px;
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <h1>The Procurement Desk — Agentic AI Decision Engine</h1>
+      <div class="subtitle">Autonomous Supplier Negotiation & Policy Governance | Team Beyond Limits</div>
+    </div>
+    <div style="text-align: right;">
+      <div class="badge" style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #10b981; font-weight: 700; font-size: 13px; padding: 6px 14px;">
+        V4 Model • Kaggle Public Score: 1.00000
+      </div>
+      <div style="font-size: 11px; color: var(--text-muted); margin-top: 5px; font-weight: 500; letter-spacing: 0.3px;">
+        Public Leaderboard Score — Private Score Pending
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Left Column: Controls & Input -->
+    <div>
+      <div class="card">
+        <h2>⚡ Pre-loaded Realistic Test Cases</h2>
+        <div class="test-case-pills" id="test-case-container">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📝 Negotiation Thread Input</h2>
+        <div class="row">
+          <div>
+            <label>Thread ID</label>
+            <input type="text" id="inp-thread-id" value="DEMO-001">
+          </div>
+          <div>
+            <label>Thread Date</label>
+            <input type="date" id="inp-date" value="2026-03-15">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Category ID</label>
+            <input type="text" id="inp-category" value="cloud-servers">
+          </div>
+          <div>
+            <label>Supplier Name</label>
+            <input type="text" id="inp-supplier" value="Zenith Maintenance Solutions">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Quantity</label>
+            <input type="number" id="inp-quantity" value="10" min="1">
+          </div>
+          <div>
+            <label>Round Number</label>
+            <input type="number" id="inp-round" value="1" min="1" max="10">
+          </div>
+        </div>
+
+        <label>Supplier Email Thread Message (Press Ctrl+Enter to Run)</label>
+        <textarea id="inp-message"></textarea>
+
+        <button id="btn-evaluate" type="button" class="btn" onclick="evaluateThread()">
+          <span>⚡</span>
+          <span id="btn-text">Run Multi-Agent Deliberation</span>
+        </button>
+        <div id="status-toast" class="status-toast">Ready for deliberation</div>
+      </div>
+    </div>
+
+    <!-- Right Column: Results & Agent Grid -->
+    <div>
+      <div id="decision-banner" class="decision-banner COUNTER">
+        <div>
+          <div style="font-size: 12px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; color: var(--text-muted);">
+            Final Evaluated Prediction
+          </div>
+          <div id="res-label" class="label-display">COUNTER:COUNTER_OFFER:96000</div>
+          <div id="res-step" style="font-size: 13px; margin-top: 4px; color: #9ca3af;">Triggered Step: Step 5 (Concession Negotiation)</div>
+          <div id="res-timing" style="font-size: 11px; margin-top: 2px; color: #6ee7b7; font-family: 'JetBrains Mono', monospace;">Deliberated in 0 ms</div>
+        </div>
+        <div id="res-action-badge" class="badge" style="font-size: 16px; padding: 6px 16px;">COUNTER</div>
+      </div>
+
+      <div class="agent-grid">
+        <!-- Agent 1 -->
+        <div class="agent-card" id="card-agent-1">
+          <div class="a-head">
+            <span>1. Thread Understanding Agent</span>
+            <span>💬</span>
+          </div>
+          <div class="metric"><span class="m-label">Extracted Offer</span><span class="m-val" id="tu-price">₹112,000</span></div>
+          <div class="metric"><span class="m-label">Currency</span><span class="m-val" id="tu-curr">INR</span></div>
+          <div class="metric"><span class="m-label">Missing Info Flag</span><span class="m-val" id="tu-missing">False</span></div>
+          <div class="metric"><span class="m-label">Volume Discount</span><span class="m-val" id="tu-vol">None</span></div>
+        </div>
+
+        <!-- Agent 2 -->
+        <div class="agent-card" id="card-agent-2">
+          <div class="a-head">
+            <span>2. Supplier Intelligence Agent</span>
+            <span>🏢</span>
+          </div>
+          <div class="metric"><span class="m-label">Supplier Status</span><span class="m-val" id="si-status">Approved</span></div>
+          <div class="metric"><span class="m-label">Blacklisted</span><span class="m-val" id="si-black">False</span></div>
+          <div class="metric"><span class="m-label">Probation Mode</span><span class="m-val" id="si-prob">False</span></div>
+          <div class="metric"><span class="m-label">FX Multiplier</span><span class="m-val" id="si-fx">1.0</span></div>
+        </div>
+
+        <!-- Agent 3 -->
+        <div class="agent-card" id="card-agent-3">
+          <div class="a-head">
+            <span>3. Policy Compliance Agent</span>
+            <span>📜</span>
+          </div>
+          <div class="metric"><span class="m-label">Target / Walkaway</span><span class="m-val" id="pc-bounds">₹96,000 / ₹115,000</span></div>
+          <div class="metric"><span class="m-label">Max Allowed Rounds</span><span class="m-val" id="pc-rounds">5</span></div>
+          <div class="metric"><span class="m-label">Banned Terms Detected</span><span class="m-val" id="pc-banned">False</span></div>
+          <div class="metric"><span class="m-label">Approval Limit</span><span class="m-val" id="pc-approval">₹6,000,000</span></div>
+        </div>
+
+        <!-- Agent 4 -->
+        <div class="agent-card" id="card-agent-4">
+          <div class="a-head">
+            <span>4. Prompt Injection Defense</span>
+            <span>🛡️</span>
+          </div>
+          <div class="metric"><span class="m-label">Adversarial Detected</span><span class="m-val" id="inj-flag">False</span></div>
+          <div class="metric"><span class="m-label">Attack Classification</span><span class="m-val" id="inj-type">None</span></div>
+          <div class="formula-box" id="inj-log">Status: Thread passed all adversarial injection checks.</div>
+        </div>
+
+        <!-- Agent 5 -->
+        <div class="agent-card" id="card-agent-5">
+          <div class="a-head">
+            <span>5. Pricing & Negotiation Agent</span>
+            <span>📐</span>
+          </div>
+          <div class="metric"><span class="m-label">Concession Level L(r)</span><span class="m-val" id="pr-level">₹96,000</span></div>
+          <div class="metric"><span class="m-label">Offer <= L(r)</span><span class="m-val" id="pr-acceptable">False</span></div>
+          <div class="metric"><span class="m-label">Counter Rupee</span><span class="m-val" id="pr-counter">₹96,000</span></div>
+          <div class="metric"><span class="m-label">Total Deal Value</span><span class="m-val" id="pr-deal">₹1,120,000</span></div>
+          <div class="formula-box" id="pr-formula">L(r) = target + (walkaway-target)*((r-1)/(R-1))^beta</div>
+        </div>
+
+        <!-- Agent 6 -->
+        <div class="agent-card" id="card-agent-6">
+          <div class="a-head">
+            <span>6. Decision Validation Agent</span>
+            <span>⚖️</span>
+          </div>
+          <div class="metric"><span class="m-label">Precedence Step</span><span class="m-val" id="dv-step">Step 5</span></div>
+          <div class="metric"><span class="m-label">Action / Reason</span><span class="m-val" id="dv-ar">COUNTER / COUNTER_OFFER</span></div>
+          <div class="metric"><span class="m-label">Grammar Validation</span><span class="m-val" style="color: #10b981;">100% COMPLIANT</span></div>
+          <div class="formula-box" id="dv-reason">Rule: Offer exceeds target on round 1. Emitted counter offer.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let testCases = [];
+
+    async function loadTestCases() {
+      try {
+        const resp = await fetch('/api/test-cases');
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        testCases = await resp.json();
+        const container = document.getElementById('test-case-container');
+        container.innerHTML = '';
+        testCases.forEach((tc, idx) => {
+          const pill = document.createElement('div');
+          pill.className = 'test-pill' + (idx === 0 ? ' active' : '');
+          pill.innerHTML = `<div class="p-title">${tc.title}</div><div class="p-desc">${tc.description}</div>`;
+          pill.onclick = () => selectTestCase(idx);
+          container.appendChild(pill);
+        });
+        if (testCases.length > 0) {
+          populateForm(testCases[0]);
+          await evaluateThread();
+        }
+      } catch (e) {
+        console.error('Failed to load test cases:', e);
+        document.getElementById('status-toast').innerText = 'Warning: Could not fetch /api/test-cases';
+        document.getElementById('status-toast').style.color = '#f59e0b';
+      }
+    }
+
+    function selectTestCase(idx) {
+      document.querySelectorAll('.test-pill').forEach((el, i) => {
+        el.classList.toggle('active', i === idx);
+      });
+      if (testCases[idx]) {
+        populateForm(testCases[idx]);
+        evaluateThread();
+      }
+    }
+
+    function populateForm(tc) {
+      document.getElementById('inp-thread-id').value = tc.thread_id || 'DEMO-001';
+      document.getElementById('inp-date').value = tc.date || '2026-03-15';
+      document.getElementById('inp-supplier').value = tc.supplier || '';
+      document.getElementById('inp-category').value = tc.category || '';
+      document.getElementById('inp-quantity').value = tc.quantity || 1;
+      document.getElementById('inp-round').value = tc.round || 1;
+      document.getElementById('inp-message').value = tc.supplier_message || '';
+    }
+
+    async function evaluateThread() {
+      const btn = document.getElementById('btn-evaluate');
+      const btnText = document.getElementById('btn-text');
+      const toast = document.getElementById('status-toast');
+      const banner = document.getElementById('decision-banner');
+
+      // Visual feedback: disable button and pulse banner
+      if (btn) btn.disabled = true;
+      if (btnText) btnText.innerText = 'Deliberating with 6 Agents...';
+      if (toast) {
+        toast.innerText = 'Dispatching thread to Agentic Blackboard...';
+        toast.style.color = '#93c5fd';
+      }
+      if (banner) banner.classList.add('loading');
+
+      const rawQty = document.getElementById('inp-quantity').value;
+      const rawRound = document.getElementById('inp-round').value;
+
+      const payload = {
+        thread_id: document.getElementById('inp-thread-id').value || 'CUSTOM-THREAD',
+        date: document.getElementById('inp-date').value || '2026-03-01',
+        supplier: document.getElementById('inp-supplier').value || 'Zenith Maintenance Solutions',
+        category: document.getElementById('inp-category').value || 'cloud-servers',
+        quantity: parseInt(rawQty, 10) || 1,
+        round: parseInt(rawRound, 10) || 1,
+        supplier_message: document.getElementById('inp-message').value || ''
+      };
+
+      try {
+        const resp = await fetch('/api/evaluate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!resp.ok) {
+          throw new Error(`Server returned HTTP ${resp.status}`);
+        }
+
+        const res = await resp.json();
+
+        if (!res.success && res.error) {
+          throw new Error(res.error);
+        }
+
+        // Update Decision Banner
+        banner.className = 'decision-banner ' + res.action;
+        document.getElementById('res-label').innerText = res.label;
+        document.getElementById('res-step').innerText = `Triggered Step: Step ${res.fired_step} (${res.reason})`;
+        document.getElementById('res-action-badge').innerText = res.action;
+        document.getElementById('res-timing').innerText = `Deliberated in ${res.duration_ms} ms (${new Date().toLocaleTimeString()})`;
+
+        // Agent 1: Thread Understanding
+        const tu = res.thread_understanding;
+        document.getElementById('tu-price').innerText = tu && tu.effective_inr_price ? `₹${Number(tu.effective_inr_price).toLocaleString()}` : 'None';
+        document.getElementById('tu-curr').innerText = (tu && tu.currency) || 'INR';
+        document.getElementById('tu-missing').innerText = (tu && tu.is_missing_info) ? 'TRUE' : 'False';
+        document.getElementById('tu-missing').style.color = (tu && tu.is_missing_info) ? '#ef4444' : '#fff';
+        document.getElementById('tu-vol').innerText = (tu && tu.volume_discount_applied) || 'None';
+
+        // Agent 2: Supplier Intelligence
+        const si = res.supplier_intelligence;
+        document.getElementById('si-status').innerText = (si && si.status) || 'Approved';
+        document.getElementById('si-black').innerText = (si && si.is_blacklisted) ? 'TRUE' : 'False';
+        document.getElementById('si-black').style.color = (si && si.is_blacklisted) ? '#ef4444' : '#fff';
+        document.getElementById('si-prob').innerText = (si && si.is_probation) ? 'TRUE' : 'False';
+        document.getElementById('si-fx').innerText = '1.0';
+
+        // Agent 3: Policy Compliance
+        const pc = res.policy_compliance;
+        if (pc) {
+          document.getElementById('pc-bounds').innerText = `₹${Number(pc.effective_target).toLocaleString()} / ₹${Number(pc.effective_walkaway).toLocaleString()}`;
+          document.getElementById('pc-rounds').innerText = pc.effective_rounds;
+          document.getElementById('pc-banned').innerText = pc.banned_term_detected ? 'TRUE' : 'False';
+          document.getElementById('pc-banned').style.color = pc.banned_term_detected ? '#ef4444' : '#fff';
+          document.getElementById('pc-approval').innerText = `₹${Number(pc.effective_approval_limit).toLocaleString()}`;
+        }
+
+        // Agent 4: Prompt Injection Defense
+        const inj = res.injection_defense;
+        if (inj) {
+          document.getElementById('inj-flag').innerText = inj.is_injection ? 'ATTACK DETECTED' : 'Clean';
+          document.getElementById('inj-flag').style.color = inj.is_injection ? '#ef4444' : '#10b981';
+          document.getElementById('inj-type').innerText = inj.attack_category || 'None';
+          document.getElementById('inj-log').innerText = inj.defense_log || 'All checks passed.';
+        }
+
+        // Agent 5: Pricing Negotiation
+        const pr = res.pricing_negotiation;
+        if (pr) {
+          document.getElementById('pr-level').innerText = `₹${Number(pr.concession_level).toLocaleString(undefined, {maximumFractionDigits: 2})}`;
+          document.getElementById('pr-acceptable').innerText = pr.is_price_acceptable ? 'TRUE' : 'False';
+          document.getElementById('pr-counter').innerText = pr.counter_price_inr ? `₹${Number(pr.counter_price_inr).toLocaleString()}` : 'N/A';
+          document.getElementById('pr-deal').innerText = `₹${Number(pr.deal_value_inr).toLocaleString()}`;
+          document.getElementById('pr-formula').innerText = `Formula: L(${pr.round_num}) = target + (walkaway-target)*((r-1)/(R-1))^beta`;
+        }
+
+        // Agent 6: Decision Validation
+        document.getElementById('dv-step').innerText = `Step ${res.fired_step}`;
+        document.getElementById('dv-ar').innerText = `${res.action} / ${res.reason}`;
+        document.getElementById('dv-reason').innerText = `Rule precedent: Step ${res.fired_step} triggered -> ${res.label}`;
+
+        if (toast) {
+          toast.innerText = `✓ Evaluated in ${res.duration_ms} ms (${new Date().toLocaleTimeString()})`;
+          toast.style.color = '#10b981';
+        }
+      } catch (err) {
+        console.error('Deliberation error:', err);
+        if (toast) {
+          toast.innerText = `Error: ${err.message}`;
+          toast.style.color = '#ef4444';
+        }
+      } finally {
+        if (btn) btn.disabled = false;
+        if (btnText) btnText.innerText = 'Run Multi-Agent Deliberation';
+        if (banner) banner.classList.remove('loading');
+      }
+    }
+
+    // Attach event listeners cleanly
+    window.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('btn-evaluate');
+      if (btn) {
+        btn.addEventListener('click', evaluateThread);
+      }
+
+      // Keyboard shortcut: Ctrl+Enter or Cmd+Enter triggers evaluation
+      document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          evaluateThread();
+        }
+      });
+
+      loadTestCases();
+    });
+  </script>
+</body>
+</html>

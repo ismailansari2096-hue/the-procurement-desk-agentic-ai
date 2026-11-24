@@ -1,0 +1,167 @@
+{
+  "catering": {
+    "id": "catering",
+    "unit": "INR excl. GST per meal",
+    "gst_rate": 0.05,
+    "target_price": 280,
+    "walkaway_price": 340,
+    "rounds": 3,
+    "beta": 1.0,
+    "approval_limit": 600000,
+    "pack_conversion": null
+  },
+  "cleaning": {
+    "id": "cleaning",
+    "unit": "INR excl. GST per site per month",
+    "gst_rate": 0.18,
+    "target_price": 85000,
+    "walkaway_price": 100000,
+    "rounds": 4,
+    "beta": 2.0,
+    "approval_limit": 900000,
+    "pack_conversion": null
+  },
+  "cloud-servers": {
+    "id": "cloud-servers",
+    "unit": "INR excl. GST per server per year",
+    "gst_rate": 0.18,
+    "target_price": 96000,
+    "walkaway_price": 115000,
+    "rounds": 5,
+    "beta": 3.0,
+    "approval_limit": 6000000,
+    "pack_conversion": null
+  },
+  "courier": {
+    "id": "courier",
+    "unit": "INR excl. GST per shipment",
+    "gst_rate": 0.18,
+    "target_price": 160,
+    "walkaway_price": 200,
+    "rounds": 4,
+    "beta": 2.0,
+    "approval_limit": 500000,
+    "pack_conversion": null
+  },
+  "crm-licenses": {
+    "id": "crm-licenses",
+    "unit": "INR excl. GST per seat per year",
+    "gst_rate": 0.18,
+    "target_price": 18000,
+    "walkaway_price": 22000,
+    "rounds": 4,
+    "beta": 2.0,
+    "approval_limit": 2500000,
+    "pack_conversion": null
+  },
+  "design-software": {
+    "id": "design-software",
+    "unit": "INR excl. GST per seat per year",
+    "gst_rate": 0.18,
+    "target_price": 30000,
+    "walkaway_price": 36000,
+    "rounds": 4,
+    "beta": 2.0,
+    "approval_limit": 1500000,
+    "pack_conversion": null
+  },
+  "headsets": {
+    "id": "headsets",
+    "unit": "INR excl. GST per headset",
+    "gst_rate": 0.18,
+    "target_price": 3500,
+    "walkaway_price": 4200,
+    "rounds": 3,
+    "beta": 1.0,
+    "approval_limit": 400000,
+    "pack_conversion": null
+  },
+  "laptops": {
+    "id": "laptops",
+    "unit": "INR excl. GST per laptop",
+    "gst_rate": 0.18,
+    "target_price": 62000,
+    "walkaway_price": 70000,
+    "rounds": 4,
+    "beta": 2.0,
+    "approval_limit": 4000000,
+    "pack_conversion": null
+  },
+  "led-lighting": {
+    "id": "led-lighting",
+    "unit": "INR excl. GST per fixture",
+    "gst_rate": 0.18,
+    "target_price": 1800,
+    "walkaway_price": 2200,
+    "rounds": 3,
+    "beta": 1.0,
+    "approval_limit": 350000,
+    "pack_conversion": "a pack holds 4 fixtures."
+  },
+  "mobile-phones": {
+    "id": "mobile-phones",
+    "unit": "INR excl. GST per phone",
+    "gst_rate": 0.18,
+    "target_price": 24000,
+    "walkaway_price": 28000,
+    "rounds": 4,
+    "beta": 2.0,
+    "approval_limit": 2000000,
+    "pack_conversion": null
+  },
+  "monitors": {
+    "id": "monitors",
+    "unit": "INR excl. GST per monitor",
+    "gst_rate": 0.18,
+    "target_price": 14000,
+    "walkaway_price": 16500,
+    "rounds": 3,
+    "beta": 1.0,
+    "approval_limit": 1200000,
+    "pack_conversion": null
+  },
+  "office-chairs": {
+    "id": "office-chairs",
+    "unit": "INR excl. GST per chair",
+    "gst_rate": 0.18,
+    "target_price": 9000,
+    "walkaway_price": 11000,
+    "rounds": 3,
+    "beta": 1.0,
+    "approval_limit": 700000,
+    "pack_conversion": null
+  },
+  "printer-paper": {
+    "id": "printer-paper",
+    "unit": "INR excl. GST per box",
+    "gst_rate": 0.12,
+    "target_price": 2200,
+    "walkaway_price": 2600,
+    "rounds": 3,
+    "beta": 1.0,
+    "approval_limit": 250000,
+    "pack_conversion": "one box = 10 reams."
+  },
+  "security-guards": {
+    "id": "security-guards",
+    "unit": "INR excl. GST per guard per month",
+    "gst_rate": 0.18,
+    "target_price": 21000,
+    "walkaway_price": 25000,
+    "rounds": 4,
+    "beta": 2.0,
+    "approval_limit": 1000000,
+    "pack_conversion": null
+  },
+  "training": {
+    "id": "training",
+    "unit": "INR excl. GST per participant",
+    "gst_rate": 0.18,
+    "target_price": 6000,
+    "walkaway_price": 7500,
+    "rounds": 3,
+    "beta": 1.0,
+    "approval_limit": 900000,
+    "pack_conversion": null
+  }
+}

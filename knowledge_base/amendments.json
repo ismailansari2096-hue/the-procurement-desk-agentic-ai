@@ -1,0 +1,74 @@
+[
+  {
+    "id": "AMD-01",
+    "category": "courier",
+    "effective_date": "2026-09-22",
+    "field": "walkaway_price",
+    "value": 210,
+    "raw_text": "# AMD-01: Courier services\n\n- **Effective from:** 2026-09-22\n- **Change:** the walk-away price for Courier services is now \u20b9210.\n"
+  },
+  {
+    "id": "AMD-02",
+    "category": "cloud-servers",
+    "effective_date": "2026-11-11",
+    "field": "walkaway_price",
+    "value": 119990,
+    "raw_text": "# AMD-02: Cloud servers\n\n- **Effective from:** 2026-11-11\n- **Change:** the walk-away price for Cloud servers is now \u20b91,19,990.\n"
+  },
+  {
+    "id": "AMD-03",
+    "category": "mobile-phones",
+    "effective_date": "2026-11-25",
+    "field": "walkaway_price",
+    "value": 29780,
+    "raw_text": "# AMD-03: Mobile phones\n\n- **Effective from:** 2026-11-25\n- **Change:** the walk-away price for Mobile phones is now \u20b929,780.\n"
+  },
+  {
+    "id": "AMD-04",
+    "category": "catering",
+    "effective_date": "2026-09-20",
+    "field": "target_price",
+    "value": 270,
+    "raw_text": "# AMD-04: Catering\n\n- **Effective from:** 2026-09-20\n- **Change:** the target price for Catering is now \u20b9270.\n"
+  },
+  {
+    "id": "AMD-05",
+    "category": "printer-paper",
+    "effective_date": "2026-11-06",
+    "field": "walkaway_price",
+    "value": 2780,
+    "raw_text": "# AMD-05: Printer paper\n\n- **Effective from:** 2026-11-06\n- **Change:** the walk-away price for Printer paper is now \u20b92,780.\n"
+  },
+  {
+    "id": "AMD-06",
+    "category": "headsets",
+    "effective_date": "2026-11-09",
+    "field": "approval_limit",
+    "value": 320000,
+    "raw_text": "# AMD-06: Headsets\n\n- **Effective from:** 2026-11-09\n- **Change:** the approval limit for Headsets is now \u20b93,20,000.\n"
+  },
+  {
+    "id": "AMD-07",
+    "category": "led-lighting",
+    "effective_date": "2026-12-05",
+    "field": "walkaway_price",
+    "value": 2360,
+    "raw_text": "# AMD-07: LED lighting\n\n- **Effective from:** 2026-12-05\n- **Change:** the walk-away price for LED lighting is now \u20b92,360.\n"
+  },
+  {
+    "id": "AMD-08",
+    "category": "led-lighting",
+    "effective_date": "2026-12-04",
+    "field": "walkaway_price",
+    "value": 2330,
+    "raw_text": "# AMD-08: LED lighting\n\n- **Effective from:** 2026-12-04\n- **Change:** the walk-away price for LED lighting is now \u20b92,330.\n"
+  },
+  {
+    "id": "AMD-09",
+    "category": "monitors",
+    "effective_date": "2026-12-14",
+    "field": "approval_limit",
+    "value": 960000,
+    "raw_text": "# AMD-09: Monitors\n\n- **Effective from:** 2026-12-14\n- **Change:** the approval limit for Monitors is now \u20b99,60,000.\n"
+  }
+]

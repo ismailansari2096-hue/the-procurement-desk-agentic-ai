@@ -1,0 +1,308 @@
+{
+  "Arvind Office Supplies": {
+    "name": "Arvind Office Supplies",
+    "status": "Approved",
+    "contract_text": "invoices in GBP are converted at \u20b9104.5 per GBP",
+    "custom_fx": {
+      "GBP": 104.5
+    },
+    "price_cap": null
+  },
+  "Aster Cleaning Co": {
+    "name": "Aster Cleaning Co",
+    "status": "Approved",
+    "contract_text": "invoices in USD are converted at \u20b984 per USD",
+    "custom_fx": {
+      "USD": 84.0
+    },
+    "price_cap": null
+  },
+  "Banyan Guarding": {
+    "name": "Banyan Guarding",
+    "status": "PROBATION",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Bluepeak Technologies": {
+    "name": "Bluepeak Technologies",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Coastline Caterers": {
+    "name": "Coastline Caterers",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Cobalt Compute": {
+    "name": "Cobalt Compute",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Deccan Logistics": {
+    "name": "Deccan Logistics",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Dune Seating": {
+    "name": "Dune Seating",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Ember Telecom": {
+    "name": "Ember Telecom",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Everbright Lighting": {
+    "name": "Everbright Lighting",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Falcon Security Services": {
+    "name": "Falcon Security Services",
+    "status": "Approved",
+    "contract_text": "invoices in GBP are converted at \u20b9105.5 per GBP",
+    "custom_fx": {
+      "GBP": 105.5
+    },
+    "price_cap": null
+  },
+  "Fjord Design Tools": {
+    "name": "Fjord Design Tools",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Garnet Print & Paper": {
+    "name": "Garnet Print & Paper",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "GreenLeaf Facility Care": {
+    "name": "GreenLeaf Facility Care",
+    "status": "BLACKLISTED",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Helix CRM": {
+    "name": "Helix CRM",
+    "status": "Approved",
+    "contract_text": "price cap for Catering of \u20b9400 per meal (replaces the walk-away price)",
+    "custom_fx": {},
+    "price_cap": {
+      "category": "catering",
+      "cap": 400
+    }
+  },
+  "Horizon Cloud": {
+    "name": "Horizon Cloud",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Indus Paper Mills": {
+    "name": "Indus Paper Mills",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Ivory Events Catering": {
+    "name": "Ivory Events Catering",
+    "status": "Approved",
+    "contract_text": "price cap for Headsets of \u20b94,400 per headset (replaces the walk-away price)",
+    "custom_fx": {},
+    "price_cap": {
+      "category": "headsets",
+      "cap": 4400
+    }
+  },
+  "Jade Express": {
+    "name": "Jade Express",
+    "status": "PROBATION",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Jupiter Devices": {
+    "name": "Jupiter Devices",
+    "status": "Approved",
+    "contract_text": "price cap for Monitors of \u20b917,600 per monitor (replaces the walk-away price)",
+    "custom_fx": {},
+    "price_cap": {
+      "category": "monitors",
+      "cap": 17600
+    }
+  },
+  "Kestrel Learning": {
+    "name": "Kestrel Learning",
+    "status": "Approved",
+    "contract_text": "invoices in EUR are converted at \u20b990.5 per EUR",
+    "custom_fx": {
+      "EUR": 90.5
+    },
+    "price_cap": null
+  },
+  "Kite Electricals": {
+    "name": "Kite Electricals",
+    "status": "Approved",
+    "contract_text": "price cap for Office chairs of \u20b911,400 per chair (replaces the walk-away price)",
+    "custom_fx": {},
+    "price_cap": {
+      "category": "office-chairs",
+      "cap": 11400
+    }
+  },
+  "Lotus Hardware": {
+    "name": "Lotus Hardware",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Lumen Workspace": {
+    "name": "Lumen Workspace",
+    "status": "BLACKLISTED",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Meridian Skills": {
+    "name": "Meridian Skills",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Monsoon Foods": {
+    "name": "Monsoon Foods",
+    "status": "Approved",
+    "contract_text": "price cap for Headsets of \u20b94,500 per headset (replaces the walk-away price)",
+    "custom_fx": {},
+    "price_cap": {
+      "category": "headsets",
+      "cap": 4500
+    }
+  },
+  "Nimbus Hosting": {
+    "name": "Nimbus Hosting",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Northstar Facilities": {
+    "name": "Northstar Facilities",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Orbit Electronics": {
+    "name": "Orbit Electronics",
+    "status": "BLACKLISTED",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Pinnacle Furniture": {
+    "name": "Pinnacle Furniture",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Quartz Software": {
+    "name": "Quartz Software",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Redwood Couriers": {
+    "name": "Redwood Couriers",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Saffron Kitchens": {
+    "name": "Saffron Kitchens",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Tidewater Systems": {
+    "name": "Tidewater Systems",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Umbra Audio": {
+    "name": "Umbra Audio",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Vertex Mobile": {
+    "name": "Vertex Mobile",
+    "status": "PROBATION",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Willow Training Co": {
+    "name": "Willow Training Co",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Xenon Displays": {
+    "name": "Xenon Displays",
+    "status": "Approved",
+    "contract_text": "price cap for LED lighting of \u20b92,300 per fixture (replaces the walk-away price)",
+    "custom_fx": {},
+    "price_cap": {
+      "category": "led-lighting",
+      "cap": 2300
+    }
+  },
+  "Yamuna Traders": {
+    "name": "Yamuna Traders",
+    "status": "Approved",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  },
+  "Zephyr SaaS": {
+    "name": "Zephyr SaaS",
+    "status": "PROBATION",
+    "contract_text": null,
+    "custom_fx": {},
+    "price_cap": null
+  }
+}
