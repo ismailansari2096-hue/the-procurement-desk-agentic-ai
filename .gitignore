@@ -25,6 +25,8 @@ credentials.json
 
 # Vercel & Node
 .vercel/
+.vercel
+.env*
 node_modules/
 
 # Local Browser Profiles & Temporary Artifacts
@@ -39,10 +41,10 @@ data/raw/
 *.tar
 *.gz
 
-# Submission CSV Files & Predictions
+# Submission CSV Files & Predictions (default ignore)
 *.csv
 outputs/
 FINAL_DELIVERY/outputs/
 
-.vercel
-.env*
+# Safe exception: include ONLY the official verified final Kaggle submission CSV
+!submission_v4.csv
