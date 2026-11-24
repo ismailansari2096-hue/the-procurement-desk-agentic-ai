@@ -43,3 +43,6 @@ data/raw/
 *.csv
 outputs/
 FINAL_DELIVERY/outputs/
+
+.vercel
+.env*
